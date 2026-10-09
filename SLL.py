@@ -1,4 +1,5 @@
-# singly linear linked list
+# Singly Linear Linked List
+
 class Node:
     def __init__(self, value):
         self.data = value
@@ -18,6 +19,34 @@ class SLL:
                 temp = temp.next
             temp.next = new_node
 
+    def insert(self, new_node, pos):
+        if pos == 1:  # To insert node at first position
+            new_node.next = self.head
+            self.head = new_node
+        else:  # To insert node from 2nd to last position
+            p = 1
+            temp = self.head
+            while p != pos - 1:
+                temp = temp.next
+                p += 1
+            new_node.next = temp.next
+            temp.next = new_node
+
+    def delete(self, value):
+        prev = None
+        temp = self.head
+        if temp.data == value:
+            self.head = self.head.next
+        else:
+            while (temp.data != value and temp):
+                prev = temp
+                temp = temp.next
+                if temp == None:
+                    print("Value is not present in the list")
+                    return
+            prev.next = temp.next
+            temp = None
+
     def print(self):
         temp = self.head
         while temp:
@@ -36,3 +65,9 @@ list1.append(Node(30))
 list1.append(Node(40))
 
 list1.print()
+
+# list1.insert(Node(34), 7)
+# list1.print()
+list1.delete(100)
+list1.print()
+
