@@ -1,4 +1,5 @@
-
+# Ass1: Create a Singly Linear Linked List
+# Create Linked List
 class Node:
     def __init__(self, value):
         self.data = value
@@ -18,6 +19,7 @@ class SLL:
                 temp = temp.next
             temp.next = node
 
+# Traverse and print node values
     def print(self):
         temp = self.head
         while temp:
@@ -25,6 +27,7 @@ class SLL:
             temp = temp.next
         print()
 
+# Insert node at a specific position
     def insert(self, node, pos):
         if pos == 1:
             node.next = self.head
@@ -36,6 +39,7 @@ class SLL:
             node.next = temp.next
             temp.next = node
 
+# Find middle node and print its value
     def middle(self):
         slow = self.head
         fast = self.head
@@ -45,6 +49,7 @@ class SLL:
         if slow:
             print("Middle:", slow.data)
 
+# Delete node
     def delete(self, value):
         temp = self.head
         prev = None
@@ -58,6 +63,7 @@ class SLL:
         else:
             prev.next = temp.next
 
+# Reverse list
     def reverse(self):
         prev = None
         temp = self.head
@@ -68,7 +74,8 @@ class SLL:
             temp = nxt
         self.head = prev
 
-    def pair_sum(self):
+# Calculate the sum of every two consecutive node values
+    def sum(self):
         temp = self.head
         while (temp.next):
             print(temp.data, "+", temp.next.data, "=", temp.data + temp.next.data)
@@ -98,5 +105,5 @@ list1.reverse()
 print("After reverse:")
 list1.print()
 
-print("Pair sums:")
-list1.pair_sum()
+print("Sum of every two consecutive node values:")
+list1.sum()
