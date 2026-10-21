@@ -42,21 +42,28 @@ class DLL:
 # Delete node
     def delete(self, value):
         temp = self.head
-        prev = None
         if temp.data == value:
             self.head = self.head.next
-            while temp.next != self.head:
-                temp = temp.next
-            temp.next = self.head
+            self.head.prev = None
         else:
             while (temp.data != value and temp):
-                prev = temp
                 temp = temp.next
-                if temp == self.head:
+                if temp == None:
                     print("Value is not present in the list")
                     return
-            prev.next = temp.next
+            temp.prev.next = temp.next
+            if temp.next:
+                temp.next.prev = temp.prev
             temp = None
+
+    def printrev(self):
+        temp = self.head
+        print("\nList elements in reverse order: ", end=" ")
+        while (temp.next):
+            temp = temp.next
+        while temp:
+            print(temp.data, end=" ")
+            temp = temp.prev
 
     def print(self):
         temp = self.head
@@ -80,5 +87,9 @@ list1.insert(Node(58), 1)
 list1.insert(Node(50), 6)
 list1.print()
 
-# list1.delete(10)
-# list1.print()
+print(("After deletion"))
+list1.delete(10)
+list1.print()
+
+print("Reversed LL:")
+list1.printrev()
