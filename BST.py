@@ -59,21 +59,27 @@ class BST:
     def inorder(self, rt):
         if rt is None:
             return
-        else:
-            self.inorder(rt.left)
-            if rt.left is None and rt.right is None:
-                self.cnt += 1
-            print(rt.data, end=" ")
-            self.inorder(rt.right)
+        self.inorder(rt.left)
+        print(rt.data, end=" ")
+        self.inorder(rt.right)
 
     def count_nleaf(self, rt):
         if rt is None:
             return
         else:
             self.count_nleaf(rt.left)
-            if rt.left is not None or rt.right is None:
+            if rt.left is not None or rt.right is not None:
                 self.cnt += 1
             self.count_nleaf(rt.right)
+
+    def count_leaf(self, rt):
+        if rt is None:
+            return
+        else:
+            self.count_leaf(rt.left)
+            if rt.left is None and rt.right is None:
+                self.cnt += 1
+            self.count_leaf(rt.right)
 
     def preorder(self, rt):
         if rt is None:
@@ -136,11 +142,18 @@ b1.findminmax()
 # Reassign self.root so deleting the root node works properly
 b1.root = b1.del_node(b1.root, 65)
 print("\nAfter Delete:")
-b1.inorder(b1.root)
 
+b1.inorder(b1.root)
 b1.count_nleaf(b1.root)
-print("\nTotal no of leaf nodes: ", b1.cnt)
+print("\ntotal no of non leaf node :", b1.cnt)
+b1.count_leaf(b1.root)
+print("\ntotal no of leaf node :", b1.cnt)
 if b1.search(500):
-    print("\nFound the node")
+    print("\nfound node")
 else:
-    print("\nNot found")
+    print("\n not found node")
+
+if b1.search(5):
+    print("\nfound node")
+else:
+    print("\nnot found node")
