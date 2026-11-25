@@ -76,6 +76,17 @@ class BST:
         self.postorder(rt.right)  # Fixed: was self.inorder
         print(rt.data, end=" ")
 
+    def search(self, key):
+        temp = self.root
+        while temp:
+            if temp.data == key:
+                return True
+            elif key < temp.data:
+                temp = temp.left
+            else:
+                temp = temp.right
+        return False
+    
     def findminmax(self):
         if self.root is None:
             print("\nTree is empty")
@@ -113,3 +124,8 @@ b1.findminmax()
 b1.root = b1.del_node(b1.root, 65)
 print("\nAfter Delete:")
 b1.inorder(b1.root)
+
+if b1.search(500):
+    print("\nFound the node")
+else:
+    print("\nNot found")
