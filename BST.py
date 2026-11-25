@@ -8,6 +8,7 @@ class Node:
 class BST:
     def __init__(self):
         self.root = None
+        self.cnt = 0
 
     def insert(self, new_node):
         if self.root is None:
@@ -58,9 +59,21 @@ class BST:
     def inorder(self, rt):
         if rt is None:
             return
-        self.inorder(rt.left)
-        print(rt.data, end=" ")
-        self.inorder(rt.right)
+        else:
+            self.inorder(rt.left)
+            if rt.left is None and rt.right is None:
+                self.cnt += 1
+            print(rt.data, end=" ")
+            self.inorder(rt.right)
+
+    def count_nleaf(self, rt):
+        if rt is None:
+            return
+        else:
+            self.count_nleaf(rt.left)
+            if rt.left is not None or rt.right is None:
+                self.cnt += 1
+            self.count_nleaf(rt.right)
 
     def preorder(self, rt):
         if rt is None:
@@ -86,7 +99,7 @@ class BST:
             else:
                 temp = temp.right
         return False
-    
+
     def findminmax(self):
         if self.root is None:
             print("\nTree is empty")
@@ -125,6 +138,8 @@ b1.root = b1.del_node(b1.root, 65)
 print("\nAfter Delete:")
 b1.inorder(b1.root)
 
+b1.count_nleaf(b1.root)
+print("\nTotal no of leaf nodes: ", b1.cnt)
 if b1.search(500):
     print("\nFound the node")
 else:
