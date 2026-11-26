@@ -67,4 +67,3 @@ b1.inorder(b1.root)
 
 print("\nlevel order:")
 b1.level_order(b1.root)
-
